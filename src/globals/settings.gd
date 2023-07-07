@@ -70,7 +70,10 @@ func get_value(section: String, key: String):
 
 
 func _check_config() -> bool:
-	if (get_value(SECTIONS.Volume, KEYS.Master) != null): 
+	if (get_value(SECTIONS.Volume, KEYS.Master) != null
+		and get_value(SECTIONS.Volume, KEYS.Music) != null
+		and get_value(SECTIONS.Volume, KEYS.SFX) != null
+	): 
 		return true
 	
 	return false

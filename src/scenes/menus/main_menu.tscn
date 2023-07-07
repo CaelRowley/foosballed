@@ -1,9 +1,130 @@
-[gd_scene format=3 uid="uid://v640mb05t8ok"]
+[gd_scene load_steps=2 format=3 uid="uid://dmuy1g6u8s8i4"]
 
-[node name="main_menu" type="Control"]
+[ext_resource type="Script" path="res://scenes/menus/main_menu.gd" id="1_wmb0a"]
+
+[node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_wmb0a")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.545098, 0.756863, 0.862745)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 8945.41
+offset_top = -8378.0
+offset_right = 8985.41
+offset_bottom = -7338.0
+rotation = 0.747056
+scale = Vector2(0.505427, 23.1687)
+color = Color(0.72549, 0.952941, 0.894118, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 9020.41
+offset_top = -8317.0
+offset_right = 9060.41
+offset_bottom = -7277.0
+rotation = 0.747056
+scale = Vector2(0.505427, 23.1687)
+color = Color(0.72549, 0.952941, 0.894118, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 8978.41
+offset_top = -8342.0
+offset_right = 9018.41
+offset_bottom = -7302.0
+rotation = 0.747056
+scale = Vector2(0.505427, 23.1687)
+color = Color(0.964706, 0.901961, 0.760784, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 8394.41
+offset_top = -8921.0
+offset_right = 8434.41
+offset_bottom = -7881.0
+rotation = 0.747056
+scale = Vector2(0.505427, 23.1687)
+color = Color(0.72549, 0.952941, 0.894118, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 8469.41
+offset_top = -8860.0
+offset_right = 8509.41
+offset_bottom = -7820.0
+rotation = 0.747056
+scale = Vector2(0.505427, 23.1687)
+color = Color(0.72549, 0.952941, 0.894118, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 8427.41
+offset_top = -8885.0
+offset_right = 8467.41
+offset_bottom = -7845.0
+rotation = 0.747056
+scale = Vector2(0.505427, 23.1687)
+color = Color(0.964706, 0.901961, 0.760784, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -130.0
+offset_right = 200.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(2, 2, 2, 1)
+theme_override_font_sizes/font_size = 80
+text = "Foosballed"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 100)
+layout_mode = 2
+
+[node name="BtnPlay" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(400, 2.08165e-12)
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Play"
+
+[node name="BtnSettings" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(400, 2.08165e-12)
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Settings"
+
+[node name="BtnQuit" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(400, 2.08165e-12)
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Quit
+"
+
+[connection signal="pressed" from="VBoxContainer/BtnPlay" to="." method="_on_btn_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/BtnSettings" to="." method="_on_btn_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/BtnQuit" to="." method="_on_btn_quit_pressed"]

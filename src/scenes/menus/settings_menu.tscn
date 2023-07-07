@@ -1,0 +1,180 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1ngskmxp0mhg"]
+
+[ext_resource type="Script" path="res://scenes/menus/settings_menu.gd" id="1_kvdhn"]
+
+[sub_resource type="Environment" id="Environment_f28a8"]
+background_mode = 3
+glow_enabled = true
+glow_levels/1 = 5.76
+glow_levels/2 = 4.12
+glow_levels/3 = 2.56
+glow_levels/4 = 1.94
+glow_levels/5 = 1.31
+glow_levels/6 = 1.0
+glow_levels/7 = 1.0
+glow_blend_mode = 1
+glow_hdr_threshold = 0.87
+glow_hdr_scale = 1.06
+glow_hdr_luminance_cap = 42.12
+
+[node name="SettingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_kvdhn")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.545098, 0.756863, 0.862745)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 8945.41
+offset_top = -8378.0
+offset_right = 8985.41
+offset_bottom = -7338.0
+rotation = 0.747056
+scale = Vector2(0.505427, 23.1687)
+color = Color(0.72549, 0.952941, 0.894118, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 9020.41
+offset_top = -8317.0
+offset_right = 9060.41
+offset_bottom = -7277.0
+rotation = 0.747056
+scale = Vector2(0.505427, 23.1687)
+color = Color(0.72549, 0.952941, 0.894118, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 8978.41
+offset_top = -8342.0
+offset_right = 9018.41
+offset_bottom = -7302.0
+rotation = 0.747056
+scale = Vector2(0.505427, 23.1687)
+color = Color(0.964706, 0.901961, 0.760784, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 8394.41
+offset_top = -8921.0
+offset_right = 8434.41
+offset_bottom = -7881.0
+rotation = 0.747056
+scale = Vector2(0.505427, 23.1687)
+color = Color(0.72549, 0.952941, 0.894118, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 8469.41
+offset_top = -8860.0
+offset_right = 8509.41
+offset_bottom = -7820.0
+rotation = 0.747056
+scale = Vector2(0.505427, 23.1687)
+color = Color(0.72549, 0.952941, 0.894118, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 8427.41
+offset_top = -8885.0
+offset_right = 8467.41
+offset_bottom = -7845.0
+rotation = 0.747056
+scale = Vector2(0.505427, 23.1687)
+color = Color(0.964706, 0.901961, 0.760784, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -130.0
+offset_right = 200.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(2, 2, 2, 1)
+theme_override_font_sizes/font_size = 80
+text = "Settings"
+
+[node name="Spacer" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 50)
+layout_mode = 2
+
+[node name="LabelVolume" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Master"
+
+[node name="SliderVolume" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="LabelMusic" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Music"
+
+[node name="SliderMusic" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="LabelSFX" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "SFX"
+
+[node name="SliderSFX" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="Spacer3" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 100)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BtnBack" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "Back"
+
+[node name="BtnSave" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "Save"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_f28a8")
+
+[connection signal="value_changed" from="VBoxContainer/SliderVolume" to="." method="_on_slider_volume_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/SliderMusic" to="." method="_on_slider_music_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/SliderSFX" to="." method="_on_slider_sfx_value_changed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/BtnBack" to="." method="_on_btn_back_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/BtnSave" to="." method="_on_btn_save_pressed"]
