@@ -11,8 +11,24 @@ config_version=5
 [application]
 
 config/name="Foosballed"
+run/main_scene="res://scenes/menus/main_menu.tscn"
 config/features=PackedStringArray("4.0", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+AudioManager="*res://globals/audio_manager.tscn"
+SceneManager="*res://globals/scene_manager.tscn"
+TimeManager="*res://globals/time_manager.tscn"
+Settings="*res://globals/settings.gd"
+
+[display]
+
+window/size/viewport_width=576
+window/size/viewport_height=1024
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+window/handheld/orientation=1
 
 [rendering]
 
