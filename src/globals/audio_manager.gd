@@ -14,6 +14,9 @@ enum Music {
 }
 enum SFX {
 	BOUNCE,
+	MENU_FORWARD,
+	MENU_BACKWARD,
+	SAVE_SETTINGS,
 }
 
 var stingers := [
@@ -27,19 +30,30 @@ var in_game_songs := [
 var sfx := {
 	SFX.BOUNCE: [
 		preload("res://audio/sfx/Puzzle_Game_Accent_Boing_02.wav"),
-	]
+	],
+	SFX.MENU_FORWARD: [
+		preload("res://audio/sfx/Puzzle_Game_Magic_Item_Unlock_1.ogg"),
+	],
+	SFX.MENU_BACKWARD: [
+		preload("res://audio/sfx/Puzzle_Game_Magic_Item_Unlock_2.ogg"),
+	],
+	SFX.SAVE_SETTINGS: [
+		preload("res://audio/sfx/Puzzle_Game_Magic_Item_Unlock_5.ogg"),
+	],
 }
 
 var bus_volumes := {
 	AUDIO_BUSES.Master: 1.0,
-	AUDIO_BUSES.Music: 1.0,
+	AUDIO_BUSES.Music: 0.5,
 	AUDIO_BUSES.SFX: 1.0,
 }
+var current_theme = null
 
 @onready var audio_stream_player := $AudioStreamPlayer as AudioStreamPlayer
 
 
 func play_music(theme: int):
+	current_theme = theme
 	match theme:
 		Music.STINGERS: audio_stream_player.stream = stingers[randi() % stingers.size()]
 		Music.MENU: audio_stream_player.stream = menu_songs[randi() % menu_songs.size()]

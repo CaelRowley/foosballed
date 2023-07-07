@@ -8,13 +8,15 @@ func _ready():
 
 
 func _on_btn_back_pressed():
+	AudioManager.play_sfx(AudioManager.SFX.MENU_BACKWARD)
 	Settings.load_config()
-	SceneManager.goto_previous_scene()
+	SceneManager.goto_previous_scene(2.0)
 
 
 func _on_btn_save_pressed():
+	AudioManager.play_sfx(AudioManager.SFX.SAVE_SETTINGS)
 	Settings.save_config()
-	SceneManager.goto_previous_scene()
+	SceneManager.goto_previous_scene(2.0)
 
 
 func _on_slider_volume_value_changed(value: float):
