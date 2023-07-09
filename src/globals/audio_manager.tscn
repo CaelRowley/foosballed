@@ -6,4 +6,5 @@
 script = ExtResource("1_fajtq")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 bus = &"Music"

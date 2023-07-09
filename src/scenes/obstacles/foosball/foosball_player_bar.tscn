@@ -1,0 +1,72 @@
+[gd_scene load_steps=5 format=3 uid="uid://cn316h2nobctw"]
+
+[ext_resource type="Script" path="res://scenes/obstacles/foosball/foosball_player_bar.gd" id="1_64dow"]
+[ext_resource type="PackedScene" uid="uid://bevwntkj77ffj" path="res://scenes/obstacles/foosball/foosball_player.tscn" id="2_sqwjm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h1c2n"]
+size = Vector2(1600, 2558)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jamm6"]
+size = Vector2(1600, 30)
+
+[node name="FoosballPlayerBar" type="CharacterBody2D"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+collision_layer = 0
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("1_64dow")
+FoosballPlayer = ExtResource("2_sqwjm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(800, 2.08165e-12)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1600.0
+offset_bottom = 30.0
+color = Color(0.490196, 0.490196, 0.490196, 1)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(800, 259)
+shape = SubResource("RectangleShape2D_h1c2n")
+
+[node name="Players" type="Node2D" parent="."]
+position = Vector2(2.08165e-12, -25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(800, 15)
+shape = SubResource("RectangleShape2D_jamm6")
+
+[node name="LeftHandle" type="Node2D" parent="."]
+position = Vector2(-300, 2.08165e-12)
+
+[node name="ColorRect" type="ColorRect" parent="LeftHandle"]
+offset_right = 300.0
+offset_bottom = 30.0
+color = Color(0.490196, 0.490196, 0.490196, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="LeftHandle"]
+offset_left = 10.0
+offset_top = -15.0
+offset_right = 210.0
+offset_bottom = 45.0
+color = Color(0, 0, 0, 1)
+
+[node name="RightHandle" type="Node2D" parent="."]
+position = Vector2(1600, 2.08165e-12)
+
+[node name="ColorRect" type="ColorRect" parent="RightHandle"]
+offset_right = 300.0
+offset_bottom = 30.0
+color = Color(0.490196, 0.490196, 0.490196, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="RightHandle"]
+offset_left = 90.0
+offset_top = -15.0
+offset_right = 290.0
+offset_bottom = 45.0
+color = Color(0, 0, 0, 1)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

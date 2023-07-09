@@ -150,7 +150,40 @@ layout_mode = 2
 max_value = 1.0
 step = 0.01
 
+[node name="Spacer2" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 100)
+layout_mode = 2
+
+[node name="LabelDifficulty" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Difficulty"
+
+[node name="SliderDifficulty" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
 [node name="Spacer3" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 100)
+layout_mode = 2
+
+[node name="FullscreenContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/FullscreenContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "Fullscreen
+"
+
+[node name="CheckBoxFullscreen" type="CheckBox" parent="VBoxContainer/FullscreenContainer"]
+layout_mode = 2
+
+[node name="Spacer4" type="Control" parent="VBoxContainer"]
 custom_minimum_size = Vector2(2.08165e-12, 100)
 layout_mode = 2
 
@@ -162,7 +195,7 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 48
-text = "Back"
+text = "Undo"
 
 [node name="BtnSave" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -176,5 +209,7 @@ environment = SubResource("Environment_f28a8")
 [connection signal="value_changed" from="VBoxContainer/SliderVolume" to="." method="_on_slider_volume_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/SliderMusic" to="." method="_on_slider_music_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/SliderSFX" to="." method="_on_slider_sfx_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/SliderDifficulty" to="." method="_on_slider_difficulty_value_changed"]
+[connection signal="toggled" from="VBoxContainer/FullscreenContainer/CheckBoxFullscreen" to="." method="_on_check_box_fullscreen_toggled"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/BtnBack" to="." method="_on_btn_back_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/BtnSave" to="." method="_on_btn_save_pressed"]

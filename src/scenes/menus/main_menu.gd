@@ -8,7 +8,7 @@ func _ready():
 
 func _on_btn_play_pressed():
 	AudioManager.play_sfx(AudioManager.SFX.MENU_FORWARD)
-	SceneManager.goto_scene("res://scenes/levels/level.tscn")
+	SceneManager.goto_scene("res://scenes/levels/foosball.tscn")
 
 
 func _on_btn_settings_pressed():

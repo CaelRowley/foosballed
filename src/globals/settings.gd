@@ -4,22 +4,34 @@ extends Node
 const CONFIG_FILE := "user://config.cfg"
 
 const SECTIONS := {
-	"Volume": "Volume",
+	"Audio": "Audio",
+	"Gameplay": "Gameplay",
+	"Display": "Display",
 }
 
 const KEYS := {
 	"Master": "Master",
 	"Music": "Music",
 	"SFX": "SFX",
+	"Difficulty": "Difficulty",
+	"Fullscreen": "Fullscreen",
 }
 
 var default_config: Dictionary = {
-	SECTIONS.Volume:  {
+	SECTIONS.Audio:  {
 		KEYS.Master: 1.0,
-		KEYS.Music: 1.0,
+		KEYS.Music: 0.5,
 		KEYS.SFX: 1.0,
 	},
+	SECTIONS.Gameplay: {
+		KEYS.Difficulty: 0.5,
+	},
+	SECTIONS.Display: {
+		KEYS.Fullscreen: true,
+	},
 }
+
+var show_tooltip := true
 
 @onready var config := ConfigFile.new()
 
@@ -46,10 +58,12 @@ func load_config():
 		revert_config()
 		return
 
-	AudioManager.set_volume(AudioManager.AUDIO_BUSES.Master, get_value(SECTIONS.Volume, KEYS.Master))
-	AudioManager.set_volume(AudioManager.AUDIO_BUSES.Music, get_value(SECTIONS.Volume, KEYS.Music))
-	AudioManager.set_volume(AudioManager.AUDIO_BUSES.SFX, get_value(SECTIONS.Volume, KEYS.SFX))
+	AudioManager.set_volume(AudioManager.AUDIO_BUSES.Master, get_value(SECTIONS.Audio, KEYS.Master))
+	AudioManager.set_volume(AudioManager.AUDIO_BUSES.Music, get_value(SECTIONS.Audio, KEYS.Music))
+	AudioManager.set_volume(AudioManager.AUDIO_BUSES.SFX, get_value(SECTIONS.Audio, KEYS.SFX))
 	
+	if (get_window().mode != get_window().MODE_FULLSCREEN and get_value(SECTIONS.Display, KEYS.Fullscreen)) or (get_window().mode == get_window().MODE_FULLSCREEN and !get_value(SECTIONS.Display, KEYS.Fullscreen)):
+		get_window().mode = get_window().MODE_FULLSCREEN if get_value(SECTIONS.Display, KEYS.Fullscreen) else get_window().MODE_WINDOWED
 
 func revert_config():
 	for section in default_config.keys():
@@ -70,9 +84,11 @@ func get_value(section: String, key: String):
 
 
 func _check_config() -> bool:
-	if (get_value(SECTIONS.Volume, KEYS.Master) != null
-		and get_value(SECTIONS.Volume, KEYS.Music) != null
-		and get_value(SECTIONS.Volume, KEYS.SFX) != null
+	if (get_value(SECTIONS.Audio, KEYS.Master) != null
+		and get_value(SECTIONS.Audio, KEYS.Music) != null
+		and get_value(SECTIONS.Audio, KEYS.SFX) != null
+		and get_value(SECTIONS.Gameplay, KEYS.Difficulty) != null
+		and get_value(SECTIONS.Display, KEYS.Fullscreen) != null
 	): 
 		return true
 	

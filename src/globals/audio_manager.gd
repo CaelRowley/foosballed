@@ -14,6 +14,11 @@ enum Music {
 }
 enum SFX {
 	BOUNCE,
+	BOING,
+	DISSOLVE,
+	ASSEMBLE,
+	PLAYER_GOAL,
+	ENEMY_GOAL,
 	MENU_FORWARD,
 	MENU_BACKWARD,
 	SAVE_SETTINGS,
@@ -29,7 +34,24 @@ var in_game_songs := [
 ]
 var sfx := {
 	SFX.BOUNCE: [
+		preload("res://audio/sfx/Puzzle_Game_Merge_Echo_01.wav"),
+		preload("res://audio/sfx/Puzzle_Game_Merge_Echo_02.wav"),
+		preload("res://audio/sfx/Puzzle_Game_Merge_Echo_03.wav"),
+	],
+	SFX.BOING: [
 		preload("res://audio/sfx/Puzzle_Game_Accent_Boing_02.wav"),
+	],
+	SFX.DISSOLVE: [
+		preload("res://audio/sfx/ Puzzle_Game_Merge_Crackle_03.wav"),
+	],
+	SFX.ASSEMBLE: [
+		preload("res://audio/sfx/Puzzle_Game_Whoosh_Heavy_03.wav"),
+	],
+	SFX.PLAYER_GOAL: [
+		preload("res://audio/sfx/Puzzle_Game_Achievement_02.wav"),
+	],
+	SFX.ENEMY_GOAL: [
+		preload("res://audio/sfx/Puzzle_Game_Achievement_01.wav"),
 	],
 	SFX.MENU_FORWARD: [
 		preload("res://audio/sfx/Puzzle_Game_Magic_Item_Unlock_1.ogg"),

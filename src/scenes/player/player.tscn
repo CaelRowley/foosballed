@@ -1,3 +1,341 @@
-[gd_scene format=3 uid="uid://yw25qm7y757d"]
+[gd_scene load_steps=17 format=3 uid="uid://ciuwi0apw1ako"]
 
-[node name="player" type="Node2D"]
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_1dq28"]
+[ext_resource type="Shader" path="res://shaders/player_sprite.gdshader" id="2_ilk01"]
+[ext_resource type="Texture2D" uid="uid://4ifn6muncqt1" path="res://assets/dotted_line.png" id="3_4emrx"]
+[ext_resource type="Texture2D" uid="uid://cos57g4lksihe" path="res://scenes/player/circle.png" id="3_ah13f"]
+[ext_resource type="Shader" path="res://shaders/trajectory_texture.gdshader" id="3_llh5k"]
+[ext_resource type="Script" path="res://scenes/player/camera.gd" id="6_c3hv1"]
+[ext_resource type="Texture2D" uid="uid://bcgjn0ef02gg3" path="res://assets/light.png" id="7_ghhnp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_em4yx"]
+shader = ExtResource("2_ilk01")
+shader_parameter/deformation = Vector2(0, 0)
+shader_parameter/sideways_deformation_factor = 2.0
+shader_parameter/flash_color = null
+shader_parameter/flash_strength = 0.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fxpys"]
+radius = 50.0
+height = 100.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cq7j8"]
+shader = ExtResource("3_llh5k")
+shader_parameter/speed = 10.0
+
+[sub_resource type="Curve" id="Curve_ewndb"]
+_data = [Vector2(0.219123, 0.723926), 0.0, 0.0, 0, 0, Vector2(0.860558, 0.398773), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_myasb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CPUParticlesDissolve:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CPUParticlesAssemble:scale:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1e-05, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CPUParticlesAssemble:scale:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1e-05, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CPUParticlesAssemble:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite2D:scale:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite2D:scale:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_s73o8"]
+resource_name = "assemble"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CPUParticlesAssemble:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(4, -0.25, 0, 0.25, 0, 1e-05, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.7)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CPUParticlesAssemble:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(4, -0.25, 0, 0.25, 0, 1e-05, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.7)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CPUParticlesAssemble:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:scale:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(2.08165e-12, -0.25, 0, 0.25, 0, 0.4, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.7, 1.5)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite2D:scale:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(2.08165e-12, -0.25, 0, 0.25, 0, 0.4, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.7, 1.5)
+}
+
+[sub_resource type="Animation" id="Animation_ft3ht"]
+resource_name = "dissolve"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CPUParticlesDissolve:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_xyxkm"]
+resource_name = "jump"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CPUParticlesJump:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l8pnw"]
+_data = {
+"RESET": SubResource("Animation_myasb"),
+"assemble": SubResource("Animation_s73o8"),
+"dissolve": SubResource("Animation_ft3ht"),
+"jump": SubResource("Animation_xyxkm")
+}
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(0.7, 0.7)
+script = ExtResource("1_1dq28")
+
+[node name="JumpTimer" type="Timer" parent="."]
+
+[node name="KickedTimer" type="Timer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_em4yx")
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("3_ah13f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_fxpys")
+
+[node name="Trajectory" type="Line2D" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_cq7j8")
+position = Vector2(1, 0)
+width = 25.0
+width_curve = SubResource("Curve_ewndb")
+texture = ExtResource("3_4emrx")
+texture_mode = 1
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Body" type="CharacterBody2D" parent="Trajectory"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trajectory/Body"]
+shape = SubResource("CapsuleShape2D_fxpys")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(2, 2)
+offset = Vector2(2.08165e-12, -200)
+zoom = Vector2(0.7, 0.7)
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+editor_draw_drag_margin = true
+script = ExtResource("6_c3hv1")
+
+[node name="CPUParticlesDissolve" type="CPUParticles2D" parent="."]
+z_index = 1
+scale = Vector2(4, 4)
+emitting = false
+amount = 200
+one_shot = true
+preprocess = 0.2
+explosiveness = 0.33
+direction = Vector2(2.08165e-12, 2.08165e-12)
+spread = 180.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 60.0
+initial_velocity_max = 80.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+
+[node name="CPUParticlesAssemble" type="CPUParticles2D" parent="."]
+z_index = 1
+scale = Vector2(1e-05, 1e-05)
+emitting = false
+amount = 200
+one_shot = true
+preprocess = 0.2
+explosiveness = 0.61
+emission_shape = 1
+emission_sphere_radius = 128.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+radial_accel_min = -400.0
+radial_accel_max = -300.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+
+[node name="CPUParticlesJump" type="CPUParticles2D" parent="."]
+z_index = 1
+emitting = false
+amount = 200
+preprocess = 0.2
+explosiveness = 0.5
+direction = Vector2(2.08165e-12, 2.08165e-12)
+spread = 180.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+orbit_velocity_min = -1.0
+orbit_velocity_max = 1.0
+scale_amount_min = 4.0
+scale_amount_max = 7.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_l8pnw")
+}
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.4
+shadow_enabled = true
+texture = ExtResource("7_ghhnp")
+texture_scale = 15.0
+
+[connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]
+[connection signal="timeout" from="KickedTimer" to="." method="_on_kicked_timer_timeout"]

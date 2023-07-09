@@ -2,7 +2,7 @@ extends Node
 
 const NORMAL_TIME_SCALE := 1.0
 
-@export var slow_time_scale := 0.1
+@export var slow_time_scale := 0.05
 @export var fast_time_scale := 1.5
 
 
